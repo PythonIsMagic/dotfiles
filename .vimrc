@@ -530,19 +530,32 @@ endfunction
 
 " Checkers:
 " http://jshint.com/install/
+" sudo npm install -g csslint
 
 let g:syntastic_html_tidy_exec = 'tidy'
-let g:syntastic_html_checkers = ['w3', 'tidy']
+let g:syntastic_html_checkers = ['tidy']
+" let g:syntastic_html_checkers = ['tidy', 'w3']
 let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_css_checkers = ['csslint']
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" By default syntastic doesn't fill the |location-list| with the errors found by the checkers,
+" tells syntastic to update the |location-list| automatically.
 let g:syntastic_always_populate_loc_list = 1
+
+" 0: err window is neither auto opened nor closed.
+" 1: err window is auto opened when errors are detected, closed when none are detected.
+" 2: err window ia auto closed when no errors are detected, but not auto opened 
 let g:syntastic_auto_loc_list = 1
+
+" run syntax checks when buffers are first loaded, as well as on saving:
 let g:syntastic_check_on_open = 1
+
+" Don't check when quitting vim
 let g:syntastic_check_on_wq = 0
 
 " ##############################################################################
