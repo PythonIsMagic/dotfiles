@@ -1,6 +1,7 @@
 test/*
 todo/*
 arc/*
+dotfiles_old/*
 *.sli
 *.sli-journal
 *.lock

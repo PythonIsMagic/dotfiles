@@ -3,17 +3,12 @@
 # Description: This script creates symlinks from the home directory to any desired dotfiles in dotfiles.txt
 # Author: Erik Lunna
 
-# set -o pipefail
-# set -o xtrace
-# set -e
-# set -u
+ROOTUID=0							# Only users w/ $UID 0 have root priv.
+E_NOTROOT=87						# Non-root exit error.
 
-ROOTUID=0               # Only users w/ $UID 0 have root priv.
-E_NOTROOT=87            # Non-root exit error.
-
-dir=~/Documents/dotfiles          # Dotfiles directory
-olddir=~/Documents/dotfiles_old   # Old dotfiles backup directory
-FILELIST="$dir"/dotfiles.txt
+dir=~/Documents/dotfiles			# Dotfiles directory
+olddir=$dir/dotfiles_old			# Old dotfiles backup directory
+FILELIST=$dir/dotfiles.txt
 TIME=$(date +"%x %r %Z")
 
 function errorcheck() {
