@@ -5,3 +5,5 @@ arc/*
 *.sli-journal
 *.lock
 Session.vim
+.custom_aliases
+.custom_functions
