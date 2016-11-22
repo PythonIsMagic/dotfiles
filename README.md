@@ -15,7 +15,7 @@ Author: Erik Lunna
 Date Started: 03-13-15
 Version Update (12-20-15) - Trimmed everything way down.
 Version Update (11-22-16) - Restructured .vimrc - trimmed off the fat.
-
+Version Update (11-22-16) - 
 >My custom run-control files for mostly Pythonic coding in Vim. 
 
 Summary
@@ -31,6 +31,18 @@ Included is a simple make file to aid in setup. The default directory structure 
 
 If you would rather have your dotfiles in /home/dotfiles, simply change it in make.sh. 
 
+Currently I'm covering:
+~/.bashrc
+~/.git-completion.bash
+~/.NERDTreeBookmarks
+~/.nethackrc
+~/.vimrc
+
+.bashrc
+-----------------
+This contains a bunch of useful aliases and functions for the Linux/Python developer.
+
+.custom_aliases and .custom_functions are auto-added to your home directory for your own personal stuff. They are auto-sourced by .bashrc.
 
 "Todo List"
 -----------------

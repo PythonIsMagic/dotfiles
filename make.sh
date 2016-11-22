@@ -70,6 +70,10 @@ function main() {
     done < "$FILELIST"
 }
 
+# Make ~/.custom_functions and ~/.custom_aliases
+touch ~/.custom_functions
+touch ~/.custom_aliases
+
 echo "DOTFILES setup tool. Version 2.0. Erik Lunna (eslunna@gmail.com)"
 echo "Performing error checks..."
 echo "----------------------------------------------------------------"
