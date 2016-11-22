@@ -42,7 +42,7 @@ alias xc='xclip -selection c'         # Move something to the clipboard
 # ##################################################
 # Super fancy ls with all bells and whistles
 function l { 
-    ls -l --almost-all --human-readable --no-user --no-group --escape --time-style='+%b %d %Y %H:%M' "$@"
+    ls -l --almost-all --human-readable --no-group --escape --time-style='+%b %d %Y %H:%M' "$@"
 }
 
 function tree {       # Generates a tree view from the current directory
@@ -119,7 +119,7 @@ PS1="[\[\033[32m\]\w]\[\033[0m\]\[$green\]\[$magenta\]\$git_branch\[$green\]\\n\
 # Source aliases
 if [ -f ~/.custom_aliases ]; then
 	# shellcheck source=/dev/null
-	. ~/.aliases
+	. ~/.custom_aliases
 fi
 
 # Source functions

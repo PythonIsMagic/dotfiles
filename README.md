@@ -10,6 +10,7 @@
 
 My Dotfiles Project
 ===============
+>My custom run-control files for mostly Pythonic coding in Vim. 
 
 Author: Erik Lunna
 
@@ -19,9 +20,6 @@ Version Update (12-20-15) - Trimmed everything way down.
 
 Version Update (11-22-16) - Restructured .vimrc - trimmed off the fat.
 
-Version Update (11-22-16) - 
-
->My custom run-control files for mostly Pythonic coding in Vim. 
 
 Summary
 ---------------

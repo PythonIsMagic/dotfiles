@@ -51,10 +51,16 @@ function main() {
 
         # Note any bad files from the list.
         # if [ ! -e "$file" ]; then
+
         if [ ! -f "$file" ]; then
-            echo "$file does not exist!"
+			if [ -f "$dir/$filename" ]; then
+				# We have the file, so we'll just link it.
+				ln --symbolic --verbose "$dir"/"$filename" "$file"
+			else
+				echo "We don't have $filename..."
+			fi
         elif [ -L "$file" ]; then
-            echo "$file is already a symbolic link!  Updating pointer"
+            echo "$file is already a symbolic link -- Updating pointer"
             ln --symbolic --verbose --interactive "$dir"/"$filename" "$file"
         else
             # We'll add the time the file was moved as a backup feature.
@@ -65,9 +71,16 @@ function main() {
     done < "$FILELIST"
 }
 
-# Make ~/.custom_functions and ~/.custom_aliases
-touch ~/.custom_functions
-touch ~/.custom_aliases
+# Make .custom_functions and .custom_aliases if they don't exist
+fun=.custom_functions
+ali=.custom_aliases
+if [ ! -f "$dir/$fun" ]; then
+	touch ~/"$dir/$fun"
+fi
+
+if [ ! -f "$dir/$fun" ]; then
+	touch ~/"$dir/$ali"
+fi
 
 echo "DOTFILES setup tool. Version 2.0. Erik Lunna (eslunna@gmail.com)"
 echo "Performing error checks..."
