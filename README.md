@@ -12,10 +12,15 @@ My Dotfiles Project
 ===============
 
 Author: Erik Lunna
+
 Date Started: 03-13-15
+
 Version Update (12-20-15) - Trimmed everything way down.
+
 Version Update (11-22-16) - Restructured .vimrc - trimmed off the fat.
+
 Version Update (11-22-16) - 
+
 >My custom run-control files for mostly Pythonic coding in Vim. 
 
 Summary
@@ -53,7 +58,9 @@ Each task must only be 1 line of text.
 * todolist.txt: Add tasks by writing "todo:" followed by the item. 
 * completed.txt: Contains a list of tasks that have been completed.
 
-To mark a todo item as Done: Move your cursor to the line of the todo, and hit <Leader><Leader>d (in my setup that translates to ,,d) This will cut the task, replace the "todo" with "done" and ship the task to the
+To mark a todo item as Done: Move your cursor to the line of the todo, and hit <Leader><Leader>d (in my setup that translates to ,,d) 
+
+This will cut the task, replace the "todo" with "done" and ship the task to the
 completed file.  It even prepends the date completed to the beginning!
 
 
