@@ -1,0 +1,7 @@
+test/*
+todo/*
+arc/*
+*.sli
+*.sli-journal
+*.lock
+Session.vim

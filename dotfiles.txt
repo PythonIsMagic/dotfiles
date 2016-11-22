@@ -1,0 +1,6 @@
+/etc/inputrc
+~/.bashrc
+~/.git-completion.bash
+~/.NERDTreeBookmarks
+~/.nethackrc
+~/.vimrc
