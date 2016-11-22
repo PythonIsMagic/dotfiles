@@ -581,8 +581,10 @@ let g:syntastic_check_on_wq = 0
 " ##############################################################################
 " Filetype Settings
 
-" Text Files
-au BufEnter *.txt setlocal textwidth=60 wrap linebreak nolist fo=aw2tq
+autocmd FileType txt setlocal textwidth=60 wrap linebreak nolist fo=aw2tq
+autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " autocmd BufNewFile,BufRead *.html set filetype=htmldjango
 
