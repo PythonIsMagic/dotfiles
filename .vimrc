@@ -221,6 +221,21 @@ augroup line_return
     \ endif
 augroup END
 
+" CSS Alphabetizer
+nmap <F4> :g#\({\n\)\@<=#.,/}/sort<CR>
+" g        " Work over the whole file running .,/}/sort on each line that matches
+"          " the pattern \({\n\)\@<=
+" #...#... " Delimiters: first bit is search pattern, second bit is what
+"          " to do on each matching line
+" \(       " Grouping, containing:
+"   {\n    " Open brace followed by new line
+" \)       " End of grouping
+" \@<=     " Negative look-behind, so match after the new-line, but make sure that
+"          " the match point is preceded by an open brace and a new-line
+" 
+" .,/}/    " From this line to the next closing brace...
+" sort     " Sort the lines
+
 " ##############################################################################
 " Plugin Configuration
 " ##############################################################################
@@ -282,6 +297,11 @@ let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightA
 " Make quoted text from URL: <C-y>A
 " Prettify code: <C-y>c
 " Lorem ipsum: div>lorem and <C-y>,
+" HTML template: html:5
+" There is also html:4s (strict)
+" There is also html:xt (xhtml)
+" link:css: <link rel="stylesheet" href="style.css" />
+" img:srcset, img:s --> <img srcset="" src="" alt="" />
 
 " Nesting: 
 "	> child
