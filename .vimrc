@@ -1,12 +1,12 @@
-" File: .vimrc
 " Author: Erik Lunna
-" Description: The VIM config file.
 " Date Started: 12-20-2015
 
-" ============================================================================
-" Plugins
-" ============================================================================
-" Vundle Config
+" Note: The folds for .vimrc start closed by default
+" Open all folds: <Leader>o  (I set ',' as my Leader key)
+" Close all folds: <Leader>c
+" Toggle a fold: <Space>
+
+" Vundle Plugins ------------------{{{
 set nocompatible				" Must be 1st, changes other options.
 								" Avoid conflict between system-wide and local vimrc files
 filetype off					" Required.
@@ -36,15 +36,18 @@ Plugin 'bling/vim-bufferline'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'myint/syntastic-extras'
+Plugin 'roktas/syntastic-more'
+Plugin 'vim-scripts/ShowMarks'
+Plugin 'tpope/vim-endwise'
+Plugin 'Raimondi/delimitMate'
+" Plugin 'skammer/vim-css-color'
+Plugin 'ap/vim-css-color'
 
 call vundle#end()				" End of plugin config
 filetype plugin indent on
 
-
-" Auto-resource when we save.
-" :source ~/.vimrc
-autocmd! bufwritepost .vimrc source %
-
+" }}}
+" Vim Settings ------------------{{{
 set encoding=utf8				" Important for Python 3
 set title			            " Sets the terminal title to the current file
 set laststatus=2                " Always show status line.
@@ -57,7 +60,6 @@ set softtabstop=4				" Number of spaces in the tab when editing. Spaces inserted
 set autoindent					" Copies indentation from previous line
 set scrolloff=8                 " Vertical lines above/below when scrolling 
 set nostartofline               " try to preserve column where cursor is positioned.
-
 
 set textwidth=92			    " Make standard width 80
 set formatoptions-=t            " Don't auto-wrap lines when typing
@@ -74,15 +76,7 @@ set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5.
 vnoremap < <gv					" better left indentation
 vnoremap > >gv					" better right indentation
 
-" Setup Leader Keys
-let mapleader=","               " Use comma for default Leader
-let maplocalleader = "\\"		" Use \ for the secondary(local) Leader
-
-" Less chording
-nnoremap ; :
-
-" ##############################################################################
-" Search and highlighting
+" Searching/highlighting
 set hlsearch					" Highlight search terms
 set incsearch			        " Find the next match as we type the search
 set ignorecase					" Ignore case when searching
@@ -93,27 +87,15 @@ set lazyredraw					" Redraw screen only when we need to.
 set wildmenu                    " Provides scrollable graphical menu for autocompletion.
 set wildmode=list:longest       " Behave similarly to a shell,
 
+" Set where splits go and focus on them immediately.
+set splitbelow                  " splits go below w/focus
+set splitright                  " vsplits go right w/focus
+
 "stuff to ignore when tab completing
 set wildignore=*.o,*.obj,*.a,*.pyc,*~
 set wildignore+=*vim/backups*,log/**,tmp/**,venv/**
 set wildignore+=*.png,*.jpg,*.gif,*.pdf,*.png,*.avi,*.mkv,*.so
 
-
-" Clear the screen of any highlighting.
-nnoremap <BS> :nohl<CR>
-
-" Keep search matches in the middle of the window and pulse the line when moving
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" Don't move on *
-nnoremap * *<c-o>
-
-" Same with jumping around
-nnoremap g; g;zz
-nnoremap g, g,zz
-
-" ##############################################################################
 " Buffer/file settings
 set autochdir                   " Vim changes to folder of the file in buffer.
 set autoread                    " Reload files changed outside vim"
@@ -132,43 +114,41 @@ autocmd FocusLost * :wa			" Save when losing focus
 " To see if there is clipboard support
 " $ vim --version | grep clipboard
 
+" }}}
+" Mappings and shortcuts ------------------{{{
+" Setup Leader Keys
+let mapleader=","               " Use comma for default Leader
+let maplocalleader = "\\"		" Use \ for the secondary(local) Leader
+
+" Less chording
+nnoremap ; :
+
+" Clear the screen of any highlighting.
+nnoremap <BS> :nohl<CR>
+
+" Keep search matches in the middle of the window and pulse the line when moving
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Don't move on *
+nnoremap * *<c-o>
+
+" Same with jumping around
+nnoremap g; g;zz
+nnoremap g, g,zz
+
 " Maps Ctrl+S to save file
 inoremap <C-s> <C-o>:w<CR>
 nnoremap <C-s> :w<CR>
 
-" ##############################################################################
-" Navigation Shortcuts
-" Change windows using Control+Direction (hjlk)
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
+" Space toggles individual folds
+nnoremap <Space> za
+vnoremap <Space> zf
 
-" Resize the current window
-nmap <C-Up> :resize +1<CR>
-nmap <C-Down> :resize -1<CR>
-
-" ^RIGHT & ^LEFT: next and previous buffers
-nmap <C-Right> :bn<CR>
-nmap <C-Left> :bp<CR>
-
-" Mimic Firefox tab navigation
-nnoremap <C-t> :tabnew<CR>
-inoremap <C-t> <Esc>:tabnew<CR>
-nnoremap <Leader><Tab> :tabnext<CR>
-inoremap <Leader><Tab> <Esc>:tabnext<CR>i
-nnoremap <Leader><S-Tab> :tabprevious<CR>
-inoremap <Leader><S-Tab> <Esc>:tabprevious<CR>i
-
-" Easy splits or tabs.
-" nnoremap <C-i> :vnew<CR>
-" inoremap <C-i> <Esc>:vnew<CR>
-nnoremap <C-o> :vnew<CR>
-inoremap <C-o> <Esc>:vnew<CR>
-
-" Set where splits go and focus on them immediately.
-set splitbelow                  " splits go below w/focus
-set splitright                  " vsplits go right w/focus
+" Close all folds/groups
+nmap <Leader>c zM
+" Open all folds/groups
+nmap <Leader>o zR
 
 " Auto-jump to the end of the pasted text:
 vnoremap y y`]
@@ -180,14 +160,6 @@ nnoremap Y y$
 
 " Remap 0 to beginning of line-text.
 nnoremap 0 ^
-
-" Maps space to fold/unfold
-nnoremap <space> za
-
-" Quit window
-noremap <Leader>e :quit<CR>
-" Quit ALL windows (no save)
-noremap <Leader>E :qa!<CR>
 
 " <F1> to prompt for a help topic
 nnoremap <F1> :help<Space>
@@ -207,19 +179,11 @@ nnoremap <C-u> gUiw
 inoremap <C-u> <esc>gUiwea
 
 " Easy open vimrc
-nnoremap <Leader>ov :vsplit $MYVIMRC<CR>
+nnoremap <Leader>ov :tabnew $MYVIMRC<CR>
 
 " Paste formatting toggling
 set pastetoggle=<F8>			" Needed if autoindent is on 
 
-"Make sure Vim returns to the same line when you reopen a file.
-augroup line_return
-    autocmd!
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   execute 'normal! g`"zvzz' |
-    \ endif
-augroup END
 
 " CSS Alphabetizer
 nmap <F4> :g#\({\n\)\@<=#.,/}/sort<CR>
@@ -236,10 +200,86 @@ nmap <F4> :g#\({\n\)\@<=#.,/}/sort<CR>
 " .,/}/    " From this line to the next closing brace...
 " sort     " Sort the lines
 
-" ##############################################################################
-" Plugin Configuration
-" ##############################################################################
-" ==================== CtrlP
+" }}}
+" Window & Buffer navigation bindings ------------------{{{
+" Change windows using Control+Direction (hjlk)
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+" ^RIGHT & ^LEFT: next and previous buffers
+nmap <C-Right> :bn<CR>
+nmap <C-Left> :bp<CR>
+
+" Mimic Firefox tab navigation
+nnoremap <C-t> :tabnew<CR>
+inoremap <C-t> <Esc>:tabnew<CR>
+nnoremap <Leader><Tab> :tabnext<CR>
+inoremap <Leader><Tab> <Esc>:tabnext<CR>i
+nnoremap <Leader><S-Tab> :tabprevious<CR>
+inoremap <Leader><S-Tab> <Esc>:tabprevious<CR>i
+
+" Easy splits or tabs.
+" nnoremap <C-i> :vnew<CR>
+" inoremap <C-i> <Esc>:vnew<CR>
+nnoremap <C-o> :vnew<CR>
+inoremap <C-o> <Esc>:vnew<CR>
+
+" Resize the current window
+nmap <C-Up> :resize +1<CR>
+nmap <C-Down> :resize -1<CR>
+
+" Quit window
+noremap <Leader>e :quit<CR>
+" Quit ALL windows (no save)
+noremap <Leader>E :qa!<CR>
+
+" }}}
+" Filetypes and Autocmds ------------------{{{
+
+autocmd FileType txt setlocal textwidth=60 wrap linebreak nolist fo=aw2tq
+autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+" autocmd BufNewFile,BufRead *.html set filetype=htmldjango
+
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker foldlevelstart=0
+augroup END
+
+" Auto-resource when we save.
+" :source ~/.vimrc
+autocmd! bufwritepost .vimrc source %
+
+"Make sure Vim returns to the same line when you reopen a file.
+augroup line_return
+    autocmd!
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+
+" }}}
+" Python Specific ------------------{{{
+
+" Easy django/python syntax 
+nnoremap <Leader>5 i{%  %}<Left><Left><Left>
+inoremap <Leader>5 {%  %}<Left><Left><Left>
+iabbrev ifname if __name__ == "__main__":
+iabbrev {{ {{ }}<Left><Left><Left>
+" }}}
+" Todo List  ------------------{{{
+" Marks a todo as done and moves it to the completed list.
+" Requires /todo directory
+" Requires todo.txt, completed.txt
+
+nnoremap <Leader><Leader>d :.s/todo/ done/<CR> 0"=strftime("%m-%d-%y")<CR>P0vg_x:redir >> ~/Documents/dotfiles/todo/completed.txt<CR>:echon @"<CR>:redir END<CR>dd:nohl<CR>
+
+" }}}
+" CtrlP Config ------------------{{{
 " ---- Commands
 " Ctrl-D: switch to filename only search instead of full path.
 " Ctrl-R: switch to regexp mode.
@@ -260,20 +300,23 @@ let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(
 
 " Search from Home dir 
 noremap <Leader>` :CtrlP ~<CR>
-
-" ==================== CtrlP-funky
+" }}}
+" CtrlP-funky ------------------{{{
 " navigates and jumps to function def from the current file w/o ctags. 
 " It just searches for function definitions or equivalent lines using regular expressions
 " Mapping:
 nnoremap <Leader>f :CtrlPFunky<Cr>
+" }}}
+" NERDTree/NERDCommenter ------------------{{{
 
-" ==================== NERDTree
+" NERDTree
 " Map the tilde key to toggle NERDTree
 nnoremap ` :NERDTreeToggle<CR>  
 let NERDTreeShowHidden=1		" Show hidden files
 let NERDTreeShowBookmarks=1		" Show NERDTree bookmarks by default
+let NERDTreeIgnore=['\\.pyc', '\\\~$', '\\.swo$', '\\.swp$', '\\.git', '\\.hg', '\\.svn', '\\.bzr']
 
-" ==================== NERDCommenter
+" NERDCommenter
 " <Leader>ci == Comment line(s)
 " <Leader>cn == Nested Comment 
 " <Leader>cs == Sexy Comments (Looks good for python!)
@@ -288,7 +331,8 @@ let g:NERDSpaceDelims=1			" Set the space after a comment char to 0
 
 let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightAlt': '"""' }}
 
-" ==================== Emmet
+" }}}
+" Emmet ------------------{{{
 " Pumping out made HTML/CSS
 " Expansion shortcut: <C-Y>,
 " Update tags: <C-y>u
@@ -326,7 +370,8 @@ let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightA
 
 " CSS Support! Lots of shortcuts!
 
-" ==================== Surround
+" }}}
+" Surround ------------------{{{
 " Quoting/parenthesizing/bracketing help.
 " cs'" == change surrounding ' to "
 " ds" == delete surrounding "
@@ -335,15 +380,15 @@ let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightA
 " ysW" == surround the WORD with "
 " or visually select and use S" to surround with "
 " Note: Always use the ending bracket (ex: )]}>) to close the space off.
-
-" ==================== TagList
+" }}}
+" TagList------------------{{{
 " Functions/Source Browser
 nnoremap <Leader>t :TlistToggle<CR>
 
 let Tlist_Show_One_File = 1		" Only show tags for current buffer
 let Tlist_Exit_OnlyWindow = 1	" Exit if taglist is last window open
-
-" ==================== GUndo
+" }}}
+" GUndo ------------------{{{
 " ASCII undo tree. view the tree of changes, navigate it, diff and revert 
 nnoremap U :GundoToggle<CR>
 
@@ -353,8 +398,8 @@ if has('persistent_undo')
   set undodir=~/.vim/backups
   set undofile
 endif
-
-" ==================== Fugitive
+" }}}
+" Fugitive ------------------{{{
 " Git wrapper
 " Common commands
 " Gstatus
@@ -375,14 +420,15 @@ endif
 " :Gread		== :Git checkout %
 " :Gremove		== :Git rm %
 " :Gmove		== :Git mv %
-
-" ==================== InterestingWords
+" }}}
+" InterestingWords ------------------{{{
 " This lets us highlight multiple terms in different colors
 nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
 nnoremap <silent> <leader>z :call UncolorAllWords()<cr>
 let g:interestingWordsRandomiseColors = 1
 
-" ==================== EasyMotion
+" }}}
+" EasyMotion ------------------{{{
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1  " You can type target keys more lazily.
 let g:EasyMotion_do_shade = 1
@@ -397,7 +443,8 @@ nmap <Tab>l <Plug>(easymotion-w)
 nmap <Leader>s <Plug>(easymotion-s)
 nmap <Leader><Leader>s <Plug>(easymotion-s2)
 
-" ==================== PythonMode
+" }}}
+" PythonMode ------------------{{{
 " Trims whitespace by default.
 " Default bindings
 " <Leader>r runs python code
@@ -451,14 +498,16 @@ let g:pymode_lint_ignore = "E116,E265,E501,W0401"
 " E501: Line too long
 " E116: invalid args?
 
-" ==================== Bufferline
+" }}}
+" Bufferline ------------------{{{
 " super simple vim plugin to show the list of buffers in the command bar
 let g:bufferline_active_buffer_left = ''
 let g:bufferline_active_buffer_right = ''
 let g:bufferline_solo_highlight = 1
 
 
-" ==================== Lightline
+" }}}
+" Lightline ------------------{{{
 " Very lightweight tabline.
 " For powerline fonts: 
 " https://powerline.readthedocs.io/en/latest/installation/linux.html#font-installation
@@ -541,9 +590,32 @@ endfunction
 function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+" }}}
+" Vim-Endwise ------------------{{{
 
+" }}}
+" Showmarks ------------------{{{
+" Seems to show a lot of extra stuff in .vimrc.
+" Cutdown on what marks it shows
+let showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-" ==================== Syntastic
+" Don't leave on by default, use :ShowMarksOn to enable
+" let g:showmarks_enable = 1
+
+" For marks a-z
+highlight ShowMarksHLl gui=bold guibg=LightBlue guifg=White
+
+" For marks A-Z
+highlight ShowMarksHLu gui=bold guibg=LightRed guifg=White
+
+" For all other marks
+highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
+
+" For multiple marks on the same line.
+highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
+
+" }}}
+" Syntastic ------------------{{{
 " Syntax checking hacks for vim
 " Run :SyntasticInfo to see what's going on.
 " run checkers explicitly by calling :SyntasticCheck <checker>. 
@@ -551,13 +623,25 @@ endfunction
 " Checkers:
 " http://jshint.com/install/
 " sudo npm install -g csslint
+" Syntastic-extras adds checkers for: C, C++, cfg/dosini, GNU Make, JSON, Python, YAML
 
+let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_html_tidy_exec = 'tidy'
 let g:syntastic_html_checkers = ['tidy']
 " let g:syntastic_html_checkers = ['tidy', 'w3']
-let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_css_checkers = ['csslint']
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_sh_checkers = ['shellcheck', 'sh']
+
+"If you want to hide all warnings for any "ng-*" attributes, you may do
+" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
+let g:syntastic_html_tidy_ignore_errors = ["trimming empty <li>", "trimming empty <span>"]
+
+" Annoying pylint msgs
+" C0325: Unnecessary parens after %r keyword
+" Have to add [MESSAGES_CONTROL] to .pylintrc
+" Then disable=C0325
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -578,35 +662,7 @@ let g:syntastic_check_on_open = 1
 " Don't check when quitting vim
 let g:syntastic_check_on_wq = 0
 
-" ##############################################################################
-" Filetype Settings
-
-autocmd FileType txt setlocal textwidth=60 wrap linebreak nolist fo=aw2tq
-autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-" autocmd BufNewFile,BufRead *.html set filetype=htmldjango
-
-" ##############################################################################
-" Python Specific Stuff
-
-" Easy django/python syntax 
-nnoremap <Leader>5 i{%  %}<Left><Left><Left>
-inoremap <Leader>5 {%  %}<Left><Left><Left>
-iabbrev ifname if __name__ == "__main__":
-iabbrev {{ {{ }}<Left><Left><Left>
-
-
-" ============================================================================
-" Todo List
-" ============================================================================
-" Marks a todo as done and moves it to the completed list.
-" Requires /todo directory
-" Requires todo.txt, completed.txt
-
-nnoremap <Leader><Leader>d :.s/todo/ done/<CR> 0"=strftime("%m-%d-%y")<CR>P0vg_x:redir >> ~/Documents/dotfiles/todo/completed.txt<CR>:echon @"<CR>:redir END<CR>dd:nohl<CR>
-
+" }}}
 
 " Getting python3 support
 " https://github.com/vim/vim
