@@ -1,0 +1,12 @@
+[FORMAT]
+
+# Maximum number of characters on a single line.
+max-line-length=96
+
+# Annoying pylint msgs                                                                       
+# C0325: Unnecessary parens after %r keyword   
+# W0142: Used * or ** magic
+# C0103: Invalid %s name "%s"
+
+[MESSAGES CONTROL]
+disable=C0103,C0325,W0142
