@@ -7,6 +7,7 @@ max-line-length=96
 # C0325: Unnecessary parens after %r keyword   
 # W0142: Used * or ** magic
 # C0103: Invalid %s name "%s"
+# R0903: Too few public methods (%s/%s)
 
 [MESSAGES CONTROL]
-disable=C0103,C0325,W0142
+disable=C0103,C0325,W0142,R0903
