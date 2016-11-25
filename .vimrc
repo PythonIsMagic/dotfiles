@@ -488,7 +488,7 @@ let g:pymode_rope_organize_imports_bind = '<LocalLeader>o'
 " Getting autoimport to work - so far not working
 let g:pymode_rope_autoimport = 1
 let g:pymode_rope_autoimport_bind = '<LocalLeader>i'
-let g:pymode_rope_autoimport_import_after_complete = 1	" Import after autocomplete
+let g:pymode_rope_autoimport_import_after_complete = 0	" DON'T import on autocomplete
 " nnoremap <LocalLeader>i :RopeAutoImport<CR>
 
 " Ignore annoying errors
@@ -636,7 +636,7 @@ let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 "If you want to hide all warnings for any "ng-*" attributes, you may do
 " let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
-let g:syntastic_html_tidy_ignore_errors = ["trimming empty <li>", "trimming empty <span>"]
+let g:syntastic_html_tidy_ignore_errors = ["trimming empty", "proprietary attribute"]
 
 " Annoying pylint msgs
 " C0325: Unnecessary parens after %r keyword
