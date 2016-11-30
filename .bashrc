@@ -21,7 +21,7 @@ alias dl='cd ~/Downloads'
 
 # Python alises
 alias py='clear; ipython'
-alias py3='clear; ipython3'
+# alias py3='clear; ipython3'
 alias pydoc='python3 /usr/lib/python3.4/pydoc.py -b'
 alias rs='python manage.py runserver'
 
@@ -30,6 +30,10 @@ alias gs='git status'
 alias gl='git log --oneline -10'
 alias lg='git log --graph --decorate --oneline --abbrev-commit --all'
 alias gaa='git add --all'
+alias com='git commit -m'
+alias gc='git checkout'
+alias gb='git checkout -b'
+alias gp='git push'
 
 # Taking out the trash on Linux Mint
 alias rmtrash='rm -rfv ~/.local/share/Trash/*' 
