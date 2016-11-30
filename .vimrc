@@ -492,11 +492,12 @@ let g:pymode_rope_autoimport_import_after_complete = 0	" DON'T import on autocom
 " nnoremap <LocalLeader>i :RopeAutoImport<CR>
 
 " Ignore annoying errors
-let g:pymode_lint_ignore = "E116,E265,E501,W0401"
+" E131: continuation line unaligned for hanging indent [pep8] 
 " W0401: Wildcard import %s
 " E265: Block comment should start with '# '
 " E501: Line too long
 " E116: invalid args?
+let g:pymode_lint_ignore = "E116,E131,E265,E501,W0401,"
 
 " }}}
 " Bufferline ------------------{{{
