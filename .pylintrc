@@ -22,6 +22,9 @@ max-line-length=96
 # C0301: Line too long (%s/%s)
 # F0401: Unable to import %s
 # E0611: No name %r in module %r
+# R0904: Too many public methods (%s/%s)
+# C901 'If 61' is too complex (13) [mccabe]  
+
 [MESSAGES CONTROL]
 
-disable=C0103,C0301,C0325,W0142,R0903,E1101,E1103,F0401,E0611
+disable=C901, C0103,C0301,C0325,W0142,R0903,E1101,E1103,F0401,E0611,R0904

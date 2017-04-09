@@ -20,11 +20,10 @@
 ################################################
 # -------- Player preferences
 ################################################
-#OPTIONS=name:Tirek
-OPTIONS=name:Trum9
+OPTIONS=name:goldenblood
 OPTIONS=dogname:Spike
 OPTIONS=catname:Opal
-OPTIONS=horsename:Derby
+OPTIONS=horsename:Derpy
 OPTIONS=fruit:Muffin
 
 # conducts
@@ -161,7 +160,7 @@ MENUCOLOR=" uncursed| UC?($| )"=white
 MENUCOLOR=" \([-0-9]+:[-0-9]+\)"=white #nethack doesn't display "uncursed" if charges are known
 MENUCOLOR=" [+-][0-9]"=white
 MENUCOLOR=" blessed| B($| )"=cyan
-MENUCOLOR=" cursed| C($| )"=red
+
 MENUCOLOR="loadstone\|wand \(of\|called\) cancellation"=underline
 MENUCOLOR="Amulet of Yendor named"=magenta                           # color only the real Amulet
 
@@ -665,3 +664,9 @@ MSGTYPE=hide "The .* doesn't notice."
 MSGTYPE=hide ".* doesn't seem harmed."
 MSGTYPE=hide "The .*'s helmet blocks .*'s attack to his head."
 MSGTYPE=hide "The .*'s helmet blocks .*'s attack to her head."
+
+
+# -------------------------
+# Show cursed stuff after all other colors, should have highest priority
+MENUCOLOR=" cursed| C($| )"=red
+MENUCOLOR=" unholy| C($| )"=red

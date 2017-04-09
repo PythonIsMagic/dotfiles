@@ -12,7 +12,7 @@ set nocompatible				" Must be 1st, changes other options.
 filetype off					" Required.
 
 " set Runtime path to inc Vundle and initialize
-set runtimepath+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " (note: older versions of Vundle used Bundle instead of Plugin)
@@ -42,6 +42,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'Raimondi/delimitMate'
 " Plugin 'skammer/vim-css-color'
 Plugin 'ap/vim-css-color'
+Plugin 'uguu-org/vim-matrix-screensaver'
 
 call vundle#end()				" End of plugin config
 filetype plugin indent on
@@ -232,7 +233,7 @@ nmap <C-Down> :resize -1<CR>
 " Quit window
 noremap <Leader>e :quit<CR>
 " Quit ALL windows (no save)
-noremap <Leader>E :qa!<CR>
+noremap <Leader>E :qa<CR>
 
 " }}}
 " Filetypes and Autocmds ------------------{{{
