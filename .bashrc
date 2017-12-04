@@ -43,7 +43,7 @@ alias rmtrash='rm -rfv ~/.local/share/Trash/*'
 
 alias rebash='source /etc/bash.bashrc' # Re-Source the bashrc file.
 alias xc='xclip -selection c'         # Move something to the clipboard  
-
+alias yt="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'"
 # ##################################################
 # FUNCTIONS
 # ##################################################

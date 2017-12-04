@@ -16,11 +16,20 @@
 # http://www.nethack.org/v360/Guidebook.html#_TOCentry_44
 # Happy hacking
 
+#  By default, hilite_status is NOT turned on. o
+#  Nutrition	Hunger
+#  2000 or more	Oversatiated[note 1]
+#  1000 to 1999	Satiated
+#  150 to 999	Not hungry[note 2]
+#  50 to 149	Hungry
+#  0 to 49	Weak
+#  Below zero	Fainting
+#  Below minimum	Starved[note 3]
 
 ################################################
 # -------- Player preferences
 ################################################
-OPTIONS=name:goldenblood
+OPTIONS=name:Histrush
 OPTIONS=dogname:Spike
 OPTIONS=catname:Opal
 OPTIONS=horsename:Derpy
@@ -110,7 +119,17 @@ OPTIONS=bones
 # STATUSCOLOR=Burdened:orange,Stressed:orange,Strained:orange,Overtaxed:orange,Overloaded:orange
 # STATUSCOLOR=Blind:red,Stun:brown,Conf:brown,Hallu:brown
 # STATUSCOLOR=Ill:red&inverse,FoodPois:red&inverse,Slime:red&inverse
+#
+#
+# DON'T WORK 3.6.0
+# OPTIONS=hilite_status:"hunger/2/green/red"  # Hungry
+# OPTIONS=hilite_status:"hunger/3/green/red"  # Weak
+# OPTIONS=hilite_status:"hunger/4/green/red"  # Fainting
 
+OPTIONS=statushilites 
+OPTION=hilite_status: hitpoints/30%/red/normal 
+OPTION=hilite_status: hunger/updown/yellow/green
+#OPTION=hilite_status:hunger/150/orange/normal 
 
 ################################################
 # -------- GRAPHICS OPTIONS
@@ -575,6 +594,8 @@ MSGTYPE=hide "You cannot stash something you are wearing."
 MSGTYPE=hide "You carefully open the .*" 
 MSGTYPE=hide "You carefully open the .* named .*"
 
+MSGTYPE=hide "You open the .*" 
+MSGTYPE=hide "You open the .* named .*"
 
 # Adapted from https://alt.org/nethack/userdata/t/tjr4/tjr4.nh343rc
 
