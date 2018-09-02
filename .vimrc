@@ -68,6 +68,8 @@ set cursorline                  " Highlight the line the cursor is on.
 highlight CursorLine cterm=NONE ctermbg=darkgray ctermfg=white guibg=darkgray guifg=white
 set colorcolumn=+1				" Display column at end of textwidth value.
 highlight ColorColumn ctermbg=233  " Gray column
+" highlight Cursor guibg=#626262
+highlight Cursor guibg=white
 
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929 " Color long lines
 match OverLength /\%93v.\+/ " When to start highlight overlength 
@@ -264,6 +266,11 @@ augroup line_return
 augroup END
 
 " }}}
+" Abbreviaions ------------------{{{
+" http://vim.wikia.com/wiki/Auto_spelling_correction_using_abbreviations
+" iabbrev int he in the
+" }}}
+
 " Python Specific ------------------{{{
 
 " Easy django/python syntax 
@@ -297,7 +304,7 @@ let g:ctrlp_working_path_mode = 0	" Let's us change working dir during a session
 " let g:ctrlp_working_path_mode =- 'ra'
 
 " Hide unnecessary files from search
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|venv'
 
 " Search from Home dir 
 noremap <Leader>` :CtrlP ~<CR>
@@ -478,7 +485,7 @@ let g:pymode_rope_goto_definition_bind = '<Leader>g'
 let g:pymode_rope_regenerate_on_write = 1 " If modified
 
 " Extended autocompletion for objects which have not been imported
-let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_goto_def_newwin = "new"
 
 " Renaming/refactoring
