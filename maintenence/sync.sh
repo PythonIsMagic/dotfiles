@@ -38,15 +38,6 @@ echo "" | tee -a  "$_log"
 # -v is verbose
 # Remember the trailing directory slashes (/) are necessary
 
-
-# Backup the critical files to Dropbox  (has to be trim though)
-rsync -av --delete ~/Documents/dev/ ~/Dropbox/rsync_dev/ | tee -a "$_log"
-rsync -av --delete ~/Documents/dotfiles/ ~/Dropbox/rsync_dotfiles/ | tee -a "$_log"
-rsync -av --delete ~/Documents/scripts/ ~/Dropbox/rsync_scripts/ | tee -a "$_log"
-rsync -av --delete ~/Documents/wiki/ ~/Dropbox/rsync_wiki/ | tee -a "$_log"
-rsync -av --delete ~/Documents/biz/ ~/Dropbox/rsync_biz/ | tee -a "$_log"
-
-
 # Backup important files to local /bak
 rsync -av --delete ~/Documents/dev/ ~/Documents/bak/rsync_dev/ | tee -a "$_log"
 rsync -av --delete ~/Documents/dotfiles/ ~/Documents/bak/rsync_dotfiles/ | tee -a "$_log"
