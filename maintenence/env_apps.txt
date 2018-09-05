@@ -1,0 +1,51 @@
+apt-get -h | head -1
+adb version
+apachectl -V
+cabal -V
+cairo-dock -v
+catfish --version
+cc --version
+chromium-browser --version
+clementine --version
+cmake --version
+ctags --version
+deluge -v
+dkms -V
+ffmpeg -version
+filezilla -v
+firefox -version
+g++ --version 
+gcc --version
+xed -V
+git --version
+gnome-commander --version
+haskell-compiler --version
+hardinfo -v | head -3
+htop -h | head -2
+iptables -V
+ipython -V
+leafpad --version
+lynx -version
+make -v
+mc -V
+mimetex -V | head -7
+mono --version
+mysql --version
+nano -V
+nemo --version
+netcat -h | head -4
+nmap -V
+node --version
+pavucontrol --help | head -4
+perl -v
+php -v
+procinfo -v
+pylint --version
+shellcheck -V
+terminator -v
+top -v
+ufw version
+vim --version
+virtualbox -h | head -3
+wheel version
+wireshark -v

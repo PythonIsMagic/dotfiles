@@ -3,7 +3,7 @@
 # Description: This script creates symlinks from the home directory to any desired dotfiles in dotfiles.txt
 # Author: Erik Lunna
 
-ROOTUID=0							# Only users w/ $UID 0 have root priv.
+ROOTUID = 0							# Only users w/ $UID 0 have root priv.
 E_NOTROOT=87						# Non-root exit error.
 
 dir=~/Documents/dotfiles			# Dotfiles directory

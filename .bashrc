@@ -66,7 +66,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\\[\\e]0;${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1"
     ;;
 *)
     ;;
@@ -75,7 +75,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+	alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -86,7 +86,6 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -99,8 +98,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-
 # Source aliases
 if [ -f ~/.custom_aliases ]; then
 	# shellcheck source=/dev/null
@@ -112,8 +109,6 @@ if [ -f ~/.custom_functions ]; then
 	# shellcheck source=/dev/null
 	. ~/.custom_functions
 fi
-
-
 
 # Enable git auto completion
 if [ -f ~/.git-completion.bash ]; then
@@ -158,11 +153,6 @@ green=$'\e[1;32m'
 magenta=$'\e[1;35m'
 # normal_colours=$'\e[m'
 
-#PS1="\[$green\]\u@\h:\w\[$magenta\]\$git_branch\[$green\]\\$\[$normal_colours\] "
+PS1="[\\[\\033[32m\\]\\w]\\[\\033[0m\\]\\[$green\\]\\[$magenta\\]\$git_branch\\[$green\\]\\n\\[\\033[1;36m\\]\\[\\033[1;33m\\]-> $ \\[\\033[0m\\]"
 
-# Git prompt that works
-# PS1="\[$green\]\w\[$magenta\]\$git_branch\[$green\]\\$\[$normal_colours\] "
-# PS1="[\[\033[32m\]\w]\[\033[0m\]\n\[\033[1;36m\]\u\[\033[1;33m\]-> \[\033[0m\]"
-
-PS1="[\[\033[32m\]\w]\[\033[0m\]\[$green\]\[$magenta\]\$git_branch\[$green\]\\n\[\033[1;36m\]\[\033[1;33m\]-> $ \[\033[0m\]"
-
+export PATH="$HOME/.cabal/bin:$PATH"

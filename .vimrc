@@ -465,7 +465,7 @@ nmap <Leader><Leader>s <Plug>(easymotion-s2)
 " Run :PymodeTroubleshooting to see configuration details 
 
 " ---- Configure pymode
-let g:pymode_python = 'python'	" Default to python2
+let g:pymode_python = 'python3'	" Default to python3
 let g:pymode_doc = 1			" Enable pymode doc lookup
 let g:pymode_folding = 0		" Don't autofold code
 let g:pymode_virtualenv = 1		" Support virtualenv

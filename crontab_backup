@@ -1,0 +1,37 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+# Everyday: 2:00AM -- Perform daily logs
+0 2 * * * ~/Documents/scripts/dailylog.sh &> /dev/null
+
+# Everyday: 2:05AM -- Rsync important files at 2:00am everyday
+5 2 * * * ~/Documents/scripts/sync.sh &> /dev/null
+
+# Weekly on Sundays: 2:10AM -- Update the hostfile file
+10 2 6 * * ~/Documents/scripts/update_hosts.sh &> /dev/null
+
+# Send a reminder email to perform some monthly manual tasks and run a script.
+@monthly ~/Documents/scripts/monthlyclean.sh
+
+# Monthly Trello Bills
+@monthly cd ~/dev/devkit && python card_factory.py monthly
