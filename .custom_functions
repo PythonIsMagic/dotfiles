@@ -1,0 +1,30 @@
+function exportwiki { # Exports the wiki to HTML
+	~/Documents/scripts/handle_wikidpad.sh
+	~/Documents/scripts/exportwiki.sh
+}
+
+function wim {        # Run the Wiki Manager Script
+	~/Documents/scripts/wikidpad_manager.sh
+}
+
+# Super fancy ls with all bells and whistles
+function l {
+    ls -l --almost-all --human-readable --no-group --escape --time-style='+%b %d %Y %H:%M' "$@"
+}
+
+function tree {       # Generates a tree view from the current directory
+    pwd; ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/';
+}
+
+function nkill {      # Kill a process by name
+    if [ -z "$1" ]; then
+		echo -e "Usage: pskill [processName]";
+    else
+		pgrep "$1" | awk "{print kill -9 $1}";
+    fi
+}
+
+function go {           # Gnome-open to get almost any resource
+	gnome-open "$@";
+}
+

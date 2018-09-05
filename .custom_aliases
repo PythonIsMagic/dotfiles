@@ -1,0 +1,69 @@
+alias arc='cd ~/Documents/arc'
+alias bak='cd ~/Documents/bak'
+alias dev='cd ~/Documents/dev'
+alias doc='cd ~/Documents/doc'
+alias dot='cd ~/Documents/dotfiles'
+alias logs='cd ~/Documents/logs'
+alias rip='cd ~/Documents/scripts'
+alias tmp='cd ~/Documents/tmp'
+alias wi='cd ~/Documents/wiki/EriksWiki/data'
+alias trash='cd ~/.local/share/Trash'
+alias todo='vim ~/Documents/dotfiles/todo/todolist.txt'
+alias junk='cd ~/Documents/junkdrawer'
+alias vid='cd /media/zeus/multimedia/Video'
+alias music='cd /media/zeus/multimedia/Music'
+alias iso='cd /media/zeus/multimedia/iso'
+alias games='cd /media/zeus/multimedia/Games'
+
+# Navigation aliases
+alias ~='cd ~'
+alias cd-='cd -'
+alias ..='cd ..'
+alias cd~='cd ~'
+alias cd..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+alias dl='cd ~/Downloads'
+
+# Python alises
+alias py='clear; ipython'
+# alias py3='clear; ipython3'
+alias pydoc='python3 /usr/lib/python3.4/pydoc.py -b'
+alias rs='python manage.py runserver'
+alias ut='python -m unittest discover'
+
+# Git aliases
+alias gs='git status'
+alias gl='git log --oneline -10'
+alias lg='git log --graph --decorate --oneline --abbrev-commit --all'
+alias gaa='git add --all'
+alias com='git commit -m'
+alias mas='git checkout master'
+alias gc='git checkout'
+alias gb='git checkout -b'
+alias gp='git push'
+
+
+# Taking out the trash on Linux Mint
+alias rmtrash='rm -rfv ~/.local/share/Trash/*'
+
+alias rebash='source ~/Documents/dotfiles/.bashrc' # Re-Source the bashrc file.
+alias xc='xclip -selection c'         # Move something to the clipboard
+alias yt="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4'"
+
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
