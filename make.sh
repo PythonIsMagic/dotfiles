@@ -3,7 +3,7 @@
 # Description: This script creates symlinks from the home directory to any desired dotfiles in dotfiles.txt
 # Author: Erik Lunna
 
-ROOTUID = 0							# Only users w/ $UID 0 have root priv.
+ROOTUID=0							# Only users w/ $UID 0 have root priv.
 E_NOTROOT=87						# Non-root exit error.
 
 dir=~/Documents/dotfiles			# Dotfiles directory
@@ -46,13 +46,6 @@ function main() {
         file="${f/#\~/$HOME}"
         filename=$(basename "$file")
 
-        # echo "basename of file: $filename"
-        # echo "$file"
-        # ln --symbolic REALFILE <-- LINK
-
-        # Note any bad files from the list.
-        # if [ ! -e "$file" ]; then
-
         if [ ! -f "$file" ]; then
 			if [ -f "$dir/$filename" ]; then
 				# We have the file, so we'll just link it.
@@ -70,6 +63,7 @@ function main() {
             ln --symbolic --verbose "$dir"/"$filename" "$file"
         fi
         echo ""
+        echo "..."
     done < "$FILELIST"
 }
 
