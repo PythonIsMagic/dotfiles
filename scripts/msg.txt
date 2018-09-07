@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>System Report</title>
+</head>
+
+<body>
+<h1>--- System things to check --- </h1>
+
+<b># Run the monthly clean script:</b>
+<p>$ sudo ~/Documents/scripts/monthly_clean.sh</p>
+
+<b># Run a system report</b>
+<p>$ sudo ~/Documents/dotfiles/scripts/system_report.sh > ~/Documents/junkdrawer/system_report.html</p>
+
+<b># Review the system packages</b>
+<p>$ aptitude</p>
+
+<b># Review system information</b>
+<p>$ hardinfo</p>
+
+<b>For Windows computers:</b>
+[ ] Install software updates
+[ ] Install firewall/virus updates
+[ ] Install Windows updates
+
+* For Mac's
+-? Throw in trash!
+</body>
+
+</html>

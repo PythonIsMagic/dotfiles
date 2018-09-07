@@ -57,10 +57,10 @@ function system_info {
 	grub-install --version
 
 	echo "<H3>RAM:</H3>"
-	cat /proc/meminfo 
+	cat /proc/meminfo
 
 	echo "<H3>BIOS INFO</H3>"
-	#Need su privilege	
+	#Need su privilege
 	sudo dmidecode | head -40
 
     echo "<H4>Show all driver packages which apply to the current system.</H4>"
@@ -78,10 +78,17 @@ function drive_space {
     df -h
     echo ""
     free -m -l -t
-    # du -ach 
+    # du -ach
     # du -sh /home/*
     #du --all --total --human-readable | sort --human-numeric-sort # View du output formatted:
-    echo "</pre>"
+
+    echo "<H4>vmstat - Virtual Memory Statistics</H4>"
+    vmstat
+
+    echo "ps auxf -- AUXF"
+    ps auxf
+
+echo "</pre>"
 }
 
 # get current host related info
@@ -106,11 +113,11 @@ function host_info () {
 function my_ips() {
     echo "<H3>Network and host IP info:</H3>"
     echo "<pre>"
-    #echo -en "\n'$Local'IP Address :$NC" ; /sbin/ifconfig wlan0 | awk /'inet addr/ {print $2}' | sed -e s/addr:/' '/ 
+    #echo -en "\n'$Local'IP Address :$NC" ; /sbin/ifconfig wlan0 | awk /'inet addr/ {print $2}' | sed -e s/addr:/' '/
     echo "Public IP: " && curl ifconfig.me -s
     #echo "Public IP: $(curl http://ipecho.net/plain -s)"
-    #echo "Alternative Public IP: $(curl http://ipecho.net/plain)" 
-    # echo -en "Local IP Address :"; /sbin/ifconfig wlan0 | awk /'inet addr/ {print $2}' | sed -e s/addr:/' '/ 
+    #echo "Alternative Public IP: $(curl http://ipecho.net/plain)"
+    # echo -en "Local IP Address :"; /sbin/ifconfig wlan0 | awk /'inet addr/ {print $2}' | sed -e s/addr:/' '/
     echo ""
 
     echo /sbin/ifconfig | awk /'inet addr/ {print $2}'
@@ -140,17 +147,19 @@ function router_status() {
 function network_status() {
     echo "<H2>Network Status</H2>"
     echo "<pre>"
-    echo "<H3>iwconfig:</H3>$(iwconfig)"
-    echo "<H3>Routing info:</H3>$(route)" 
+    echo "<H3>iwconfig:</H3>"
+    iwconfig
     echo "</pre>"
 }
 
 function netstat_info() {
     echo "<H3>Netstat:</H3>"
     echo "<pre>"
-    #echo "$(netstat -s | head -40)"
-    # echo "$(netstat -s)"
 	netstat -s
+
+    echo "<p>List all open ports and associated programs:</p>"
+    sudo netstat -tulpn
+
     echo "</pre>"
 }
 
@@ -208,7 +217,7 @@ function problem_commands() {
 
     echo -n "<b>java </b>"
     echo "<pre>$(java -version 2>&1)</pre><br /></pre>"
-    
+
     echo -n "<b>python </b>"
     echo "<pre>$(python2 --version 2>&1)</pre><br /></pre>"
     echo "<pre>$(python3 --version 2>&1)</pre><br /></pre>"
@@ -224,7 +233,7 @@ function shell_info() {
 	echo "<br />"
 	echo "<b>Bash:</b>" ; bash --version
 	echo "<br />"
-	echo "<b>rbash:</b>" ; rbash --version	
+	echo "<b>rbash:</b>" ; rbash --version
 	echo "<br />"
 	echo "<b>dash:</b>" ; apt-cache policy dash
 	echo "<br />"
@@ -247,7 +256,7 @@ cat <<- _EOF_
 		$(network_status)
 		$(router_status)
 		$(netstat_info)
-		$(ports_info)	
+		$(ports_info)
 		$(nmap_probe)
 		$(list_connected)
 		$(app_info)
