@@ -59,7 +59,8 @@ set tabstop=4                   " How many spaces a tab counts for.
 set softtabstop=4				" Number of spaces in the tab when editing. Spaces inserted
 								" when you <TAB> and spaces removed when you backspace.
 set autoindent					" Copies indentation from previous line
-set scrolloff=8                 " Vertical lines above/below when scrolling 
+set scrolloff=5                 " Vertical lines above/below when scrolling 
+set sidescrolloff=5				" Horizontal lines beside when scrolling. Useful with nowrap.
 set nostartofline               " try to preserve column where cursor is positioned.
 
 set textwidth=92			    " Make standard width 80
@@ -78,6 +79,8 @@ set shiftwidth=4                " Affects >>, <<, ==, and auto indentation.
 set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5.
 vnoremap < <gv					" better left indentation
 vnoremap > >gv					" better right indentation
+
+" set spell spelllang=en_us		" Check spelling in comments.
 
 " Searching/highlighting
 set hlsearch					" Highlight search terms
