@@ -155,4 +155,9 @@ magenta=$'\e[1;35m'
 
 PS1="[\\[\\033[32m\\]\\w]\\[\\033[0m\\]\\[$green\\]\\[$magenta\\]\$git_branch\\[$green\\]\\n\\[\\033[1;36m\\]\\[\\033[1;33m\\]-> $ \\[\\033[0m\\]"
 
+# This makes Cabal work.
 export PATH="$HOME/.cabal/bin:$PATH"
+
+# This makes autoenv work
+source `which activate.sh`
+
