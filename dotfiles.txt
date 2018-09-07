@@ -6,3 +6,4 @@
 ~/.custom_functions
 ~/.custom_aliases
 ~/.pylintrc
+~/.dircolors
