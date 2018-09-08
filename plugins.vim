@@ -187,14 +187,21 @@ let g:interestingWordsRandomiseColors = 1
 " }}}
 " Lightline ------------------{{{ 
 " ##########################################################################################
-
 " Very lightweight tabline.
+
 " For powerline fonts: 
 " https://powerline.readthedocs.io/en/latest/installation/linux.html#font-installation
+
 " wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 " wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-" mv PowerlineSymbols.otf ~/.fonts/
-" fc-cache -vf ~/.fonts/
+" Move the font to a valid place.
+" Run this to find a valid location:
+" xset q 
+
+" mv PowerlineSymbols.otf /usr/share/fonts/X11/misc
+" fc-cache -vf /usr/share/fonts/X11/misc
+
+" mkdir ~/.config/fontconfig/conf.d/
 " mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 
 " Configure GUI Options
