@@ -45,8 +45,14 @@ Plugin 'uguu-org/vim-matrix-screensaver'
 call vundle#end()				" End of plugin config
 filetype plugin indent on
 
+" Bufferline ------------------{{{ 
+" ##########################################################################################
 
-
+" super simple vim plugin to show the list of buffers in the command bar
+let g:bufferline_active_buffer_left = ''
+let g:bufferline_active_buffer_right = ''
+let g:bufferline_solo_highlight = 1
+" }}}
 " CtrlP Config ------------------{{{ 
 " ##########################################################################################
 " ---- Commands
@@ -79,29 +85,22 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 " NERDTree/NERDCommenter 
 
 " }}}
-" NERDTree ------------------{{{ 
+" EasyMotion ------------------{{{ 
 " ##########################################################################################
-" Map the tilde key to toggle NERDTree
-nnoremap ` :NERDTreeToggle<CR>  
-let NERDTreeShowHidden=1		" Show hidden files
-let NERDTreeShowBookmarks=1		" Show NERDTree bookmarks by default
-let NERDTreeIgnore=['\\.pyc', '\\\~$', '\\.swo$', '\\.swp$', '\\.git', '\\.hg', '\\.svn', '\\.bzr']
-" }}}
-" NERDCommenter ------------------{{{ 
-" ##########################################################################################
-" <Leader>ci == Comment line(s)
-" <Leader>cn == Nested Comment 
-" <Leader>cs == Sexy Comments (Looks good for python!)
-" <Leader>cm == Multiline Comment (use for Python doc-comments)
-" <leader>c$ - Comments from cursor to EOL.
-" <leader>cA - Append comment to the EOL
 
-" let g:NERDUsePlaceHolders=0
-" let g:NERDAllowAnyVisualDelims=1
-let g:NERDSpaceDelims=1			" Set the space after a comment char to 0
-" let g:NERDCompactSexyComs = 1 " for prettified multi-line comments
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1  " You can type target keys more lazily.
+let g:EasyMotion_do_shade = 1
 
-let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightAlt': '"""' }}
+" Nice motions using Tab and the native movement keys
+nmap <Tab>h <Plug>(easymotion-b)
+nmap <Tab>j <Plug>(easymotion-j)
+nmap <Tab>k <Plug>(easymotion-k)
+nmap <Tab>l <Plug>(easymotion-w)
+
+" s for "search"
+nmap <Leader>s <Plug>(easymotion-s)
+nmap <Leader><Leader>s <Plug>(easymotion-s2)
 " }}}
 " Emmet ------------------{{{ 
 " ##########################################################################################
@@ -143,38 +142,6 @@ let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightA
 
 " CSS Support! Lots of shortcuts!
 " }}}
-" Surround ------------------{{{ 
-" ##########################################################################################
-
-" Quoting/parenthesizing/bracketing help.
-" cs'" == change surrounding ' to "
-" ds" == delete surrounding "
-" dst == delete surround tags (HTML)
-" ysw" == surround the word with "
-" ysW" == surround the WORD with "
-" or visually select and use S" to surround with "
-" Note: Always use the ending bracket (ex: )]}>) to close the space off.
-" }}}
-" TagList ------------------{{{ 
-" ##########################################################################################
-
-" Functions/Source Browser
-nnoremap <Leader>t :TlistToggle<CR>
-
-let Tlist_Show_One_File = 1		" Only show tags for current buffer
-let Tlist_Exit_OnlyWindow = 1	" Exit if taglist is last window open
-" }}}
-" GUndo ------------------{{{ 
-" ASCII undo tree. view the tree of changes, navigate it, diff and revert 
-nnoremap U :GundoToggle<CR>
-
-" Keep undo history across sessions, by storing in file.
-if has('persistent_undo')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
-  set undofile
-endif
-" }}}
 " Fugitive  ------------------{{{ 
 " ##########################################################################################
 
@@ -199,6 +166,17 @@ endif
 " :Gremove		== :Git rm %
 " :Gmove		== :Git mv %
 " }}}
+" GUndo ------------------{{{ 
+" ASCII undo tree. view the tree of changes, navigate it, diff and revert 
+nnoremap U :GundoToggle<CR>
+
+" Keep undo history across sessions, by storing in file.
+if has('persistent_undo')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
+" }}}
 " InterestingWords ------------------{{{ 
 " ##########################################################################################
 
@@ -206,89 +184,6 @@ endif
 nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
 nnoremap <silent> <leader>z :call UncolorAllWords()<cr>
 let g:interestingWordsRandomiseColors = 1
-" }}}
-" EasyMotion ------------------{{{ 
-" ##########################################################################################
-
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1  " You can type target keys more lazily.
-let g:EasyMotion_do_shade = 1
-
-" Nice motions using Tab and the native movement keys
-nmap <Tab>h <Plug>(easymotion-b)
-nmap <Tab>j <Plug>(easymotion-j)
-nmap <Tab>k <Plug>(easymotion-k)
-nmap <Tab>l <Plug>(easymotion-w)
-
-" s for "search"
-nmap <Leader>s <Plug>(easymotion-s)
-nmap <Leader><Leader>s <Plug>(easymotion-s2)
-" }}}
-" PythonMode ------------------{{{ 
-" ##########################################################################################
-
-" Trims whitespace by default.
-" Default bindings
-" <Leader>r runs python code
-" <Leader>b add/remove breakpoint (ipdb)
-" K - search python documentation
-" <C-Space> autocompletes
-" [[ jump to prev class/func
-" ]] jump to next class/func
-
-" Run :PymodeTroubleshooting to see configuration details 
-
-" ---- Configure pymode
-let g:pymode_python = 'python3'	" Default to python3
-let g:pymode_doc = 1			" Enable pymode doc lookup
-let g:pymode_folding = 0		" Don't autofold code
-let g:pymode_virtualenv = 1		" Support virtualenv
-let g:pymode_lint_on_fly = 0	" Check code on-the-fly
-let g:pymode_lint_message = 1	" Show err msg if cursor place on err line
-
-" Problem: .ropeproject is created in home dir or big projects dir. Slows down regenerate
-" and autocomplete.
-" Solution: Create an empty directory without write permission in ~. Script this in
-" dotfiles?
-" $ mkdir ~/.ropeproject && chmod 000 $_
-" }}}
-" ---- Configure Rope ------------------{{{ 
-" ##########################################################################################
-let g:pymode_rope = 1
-let g:pymode_rope_lookup_project = 0	" Look in parents for rope project
-let g:pymode_rope_goto_definition_bind = '<Leader>g'
-let g:pymode_rope_regenerate_on_write = 1 " If modified
-
-" Extended autocompletion for objects which have not been imported
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_goto_def_newwin = "new"
-
-" Renaming/refactoring
-let g:pymode_rope_rename_bind = '<LocalLeader>r'
-let g:pymode_rope_rename_module_bind = '<LocalLeader>m'
-let g:pymode_rope_organize_imports_bind = '<LocalLeader>o'
-
-" Getting autoimport to work - so far not working
-let g:pymode_rope_autoimport = 1
-let g:pymode_rope_autoimport_bind = '<LocalLeader>i'
-let g:pymode_rope_autoimport_import_after_complete = 0	" DON'T import on autocomplete
-" nnoremap <LocalLeader>i :RopeAutoImport<CR>
-
-" Ignore annoying errors
-" E131: continuation line unaligned for hanging indent [pep8] 
-" W0401: Wildcard import %s
-" E265: Block comment should start with '# '
-" E501: Line too long
-" E116: invalid args?
-let g:pymode_lint_ignore = "E116,E131,E265,E501,W0401,"
-" }}}
-" Bufferline ------------------{{{ 
-" ##########################################################################################
-
-" super simple vim plugin to show the list of buffers in the command bar
-let g:bufferline_active_buffer_left = ''
-let g:bufferline_active_buffer_right = ''
-let g:bufferline_solo_highlight = 1
 " }}}
 " Lightline ------------------{{{ 
 " ##########################################################################################
@@ -376,8 +271,43 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 " }}}
-" Vim-Endwise ------------------{{{ 
+" NERDCommenter ------------------{{{ 
 " ##########################################################################################
+" <Leader>ci == Comment line(s)
+" <Leader>cn == Nested Comment 
+" <Leader>cs == Sexy Comments (Looks good for python!)
+" <Leader>cm == Multiline Comment (use for Python doc-comments)
+" <leader>c$ - Comments from cursor to EOL.
+" <leader>cA - Append comment to the EOL
+
+" let g:NERDUsePlaceHolders=0
+" let g:NERDAllowAnyVisualDelims=1
+let g:NERDSpaceDelims=1			" Set the space after a comment char to 0
+" let g:NERDCompactSexyComs = 1 " for prettified multi-line comments
+
+let g:NERDCustomDelimiters = {'python': { 'left': '#', 'leftAlt': '"""', 'rightAlt': '"""' }}
+" }}}
+" NERDTree ------------------{{{ 
+" ##########################################################################################
+" Map the tilde key to toggle NERDTree
+nnoremap ` :NERDTreeToggle<CR>  
+let NERDTreeShowHidden=1		" Show hidden files
+let NERDTreeShowBookmarks=1		" Show NERDTree bookmarks by default
+let NERDTreeIgnore=['\\.pyc', '\\\~$', '\\.swo$', '\\.swp$', '\\.git', '\\.hg', '\\.svn', '\\.bzr']
+" }}}
+" PythonMode ------------------{{{ 
+
+"---- Configure Rope 
+" ##########################################################################################
+
+" Ignore annoying errors
+" E131: continuation line unaligned for hanging indent [pep8] 
+" W0401: Wildcard import %s
+" E265: Block comment should start with '# '
+" E501: Line too long
+" E116: invalid args?
+" let g:pymode_lint_ignore = "E116,E131,E265,E501,W0401,"
+let g:pymode_lint_ignore = "E501"
 " }}}
 " Showmarks ------------------{{{ 
 " ##########################################################################################
@@ -401,10 +331,20 @@ highlight ShowMarksHLo gui=bold guibg=LightYellow guifg=DarkYellow
 " For multiple marks on the same line.
 highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 " }}}
-" Syntastic ------------------{{{ 
+" Surround ------------------{{{ 
 " ##########################################################################################
 
-" Syntax checking hacks for vim
+" Quoting/parenthesizing/bracketing help.
+" cs'" == change surrounding ' to "
+" ds" == delete surrounding "
+" dst == delete surround tags (HTML)
+" ysw" == surround the word with "
+" ysW" == surround the WORD with "
+" or visually select and use S" to surround with "
+" Note: Always use the ending bracket (ex: )]}>) to close the space off.
+" }}}
+" Syntastic ------------------{{{ 
+" ##########################################################################################
 " Run :SyntasticInfo to see what's going on.
 " run checkers explicitly by calling :SyntasticCheck <checker>. 
 
@@ -416,21 +356,14 @@ highlight ShowMarksHLm gui=bold guibg=LightGreen guifg=DarkGreen
 let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_html_tidy_exec = 'tidy'
 let g:syntastic_html_checkers = ['tidy']
-" let g:syntastic_html_checkers = ['tidy', 'w3']
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 
 "If you want to hide all warnings for any "ng-*" attributes, you may do
 " let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 let g:syntastic_html_tidy_ignore_errors = ["trimming empty", "proprietary attribute"]
-
-" Annoying pylint msgs
-" C0325: Unnecessary parens after %r keyword
-" Have to add [MESSAGES_CONTROL] to .pylintrc
-" Then disable=C0325
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -450,3 +383,16 @@ let g:syntastic_check_on_open = 1
 " Don't check when quitting vim
 let g:syntastic_check_on_wq = 0
 " }}}
+" TagList ------------------{{{ 
+" ##########################################################################################
+
+" Functions/Source Browser
+nnoremap <Leader>t :TlistToggle<CR>
+
+let Tlist_Show_One_File = 1		" Only show tags for current buffer
+let Tlist_Exit_OnlyWindow = 1	" Exit if taglist is last window open
+" }}}
+" Vim-Endwise ------------------{{{ 
+" ##########################################################################################
+" }}}
+
