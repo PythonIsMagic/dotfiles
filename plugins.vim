@@ -304,8 +304,31 @@ let NERDTreeIgnore=['\\.pyc', '\\\~$', '\\.swo$', '\\.swp$', '\\.git', '\\.hg', 
 " }}}
 " PythonMode ------------------{{{ 
 
+" Trims whitespace by default.
+" Default bindings
+" <Leader>r runs python code
+" <Leader>b add/remove breakpoint (ipdb)
+" K - search python documentation
+" <C-Space> autocompletes
+" [[ jump to prev class/func
+" ]] jump to next class/func
+
+" Run :PymodeTroubleshooting to see configuration details 
+
+
 "---- Configure Rope 
 " ##########################################################################################
+let g:pymode_rope = 1
+
+" Renaming/refactoring
+let g:pymode_rope_rename_bind = '<LocalLeader>r'
+let g:pymode_rope_rename_module_bind = '<LocalLeader>m'
+let g:pymode_rope_organize_imports_bind = '<LocalLeader>o'
+let g:pymode_rope_goto_definition_bind = '<Leader>g'
+
+" Extended autocompletion for objects which have not been imported
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_goto_def_newwin = "new"
 
 " Ignore annoying errors
 " E131: continuation line unaligned for hanging indent [pep8] 
@@ -364,7 +387,7 @@ let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_html_tidy_exec = 'tidy'
 let g:syntastic_html_checkers = ['tidy']
 let g:syntastic_javascript_checkers = ['jshint']
-" let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_sh_checkers = ['shellcheck', 'sh']
 
 "If you want to hide all warnings for any "ng-*" attributes, you may do
@@ -382,13 +405,18 @@ let g:syntastic_always_populate_loc_list = 1
 " 0: err window is neither auto opened nor closed.
 " 1: err window is auto opened when errors are detected, closed when none are detected.
 " 2: err window ia auto closed when no errors are detected, but not auto opened 
-let g:syntastic_auto_loc_list = 1
+" 3: error window is auto opened when errors are detected, but not closed automatically. >
+
+let g:syntastic_auto_loc_list = 0
 
 " run syntax checks when buffers are first loaded, as well as on saving:
 let g:syntastic_check_on_open = 1
 
 " Don't check when quitting vim
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checker_args = '--ignore=E225'
+
 " }}}
 " TagList ------------------{{{ 
 " ##########################################################################################

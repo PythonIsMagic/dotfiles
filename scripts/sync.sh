@@ -47,6 +47,9 @@ rsync -av --delete ~/Documents/biz/ ~/Documents/bak/rsync_biz/ | tee -a "$_log"
 rsync -av --delete ~/Documents/projects/ ~/Documents/bak/rsync_projects/ | tee -a "$_log"
 rsync -av --delete ~/Documents/hpc/ ~/Documents/bak/rsync_hpc/ | tee -a "$_log"
 
+# Backup Thunderbird profile
+rsync -av --delete ~/.thunderbird/ ~/Documents/bak/rsync_thunderbird/ | tee -a "$_log"
+
 
 # Backup Documents directory to secondary hard drive
 rsync -av --delete ~/ "$STORAGE"/"$USER"/Documents/ | tee -a "$_log"

@@ -13,8 +13,8 @@ docstring-min-length=8
 # Maximum number of characters on a single line.
 max-line-length=96
 
-# Annoying pylint msgs                                                                       
-# C0325: Unnecessary parens after %r keyword   
+# Annoying pylint msgs
+# C0325: Unnecessary parens after %r keyword
 # W0142: Used * or ** magic
 # C0103: Invalid %s name "%s"
 # R0903: Too few public methods (%s/%s)
@@ -24,7 +24,8 @@ max-line-length=96
 # F0401: Unable to import %s
 # E0611: No name %r in module %r
 # R0904: Too many public methods (%s/%s)
-# C901 'If 61' is too complex (13) [mccabe]  
+# C901 'If 61' is too complex (13) [mccabe]
+# R0913: too-many-arguments
 
 # W0403: [relative-import] Relative import 'bills', should be 'devkit.bills'
 # W0621: [redefined-outer-name] Redefining name 'info' from outer scope (line 211)
@@ -34,4 +35,4 @@ max-line-length=96
 
 [MESSAGES CONTROL]
 
-disable=C901,C0103,C0301,C0325,W0142,R0903,E1101,E1103,F0401,E0611,R0904,W0403,C0111,W0621
+disable=C901,C0103,C0301,C0325,W0142,R0903,E1101,E1103,F0401,E0611,R0904,W0403,C0111,W0621, R0913

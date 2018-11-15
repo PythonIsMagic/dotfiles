@@ -1,0 +1,40 @@
+" " PythonMode ------------------{{{
+" ##########################################################################################
+" ---- Configure pymode
+let g:pymode_python = 'python3'	" Default to python3
+let g:pymode_doc = 1			" Enable pymode doc lookup
+let g:pymode_folding = 0		" Don't autofold code
+let g:pymode_virtualenv = 1		" Support virtualenv
+let g:pymode_lint_on_fly = 0	" Check code on-the-fly
+let g:pymode_lint_message = 1	" Show err msg if cursor place on err line
+
+" Problem: .ropeproject is created in home dir or big projects dir. Slows down regenerate
+" and autocomplete.
+" Solution: Create an empty directory without write permission in ~. Script this in
+" dotfiles?
+" $ mkdir ~/.ropeproject && chmod 000 $_
+" }}}
+
+---- Configure Rope ------------------{{{
+" ##########################################################################################
+let g:pymode_rope_lookup_project = 0	" Look in parents for rope project
+let g:pymode_rope_regenerate_on_write = 1 " If modified
+
+
+
+
+" Getting autoimport to work - so far not working
+let g:pymode_rope_autoimport = 1
+let g:pymode_rope_autoimport_bind = '<LocalLeader>i'
+let g:pymode_rope_autoimport_import_after_complete = 0	" DON'T import on autocomplete
+" nnoremap <LocalLeader>i :RopeAutoImport<CR>
+
+" }}}
+
+" Syntastic ------------------{{{
+
+" Annoying pylint msgs
+" C0325: Unnecessary parens after %r keyword
+" Have to add [MESSAGES_CONTROL] to .pylintrc
+" Then disable=C0325
+

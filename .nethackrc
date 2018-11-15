@@ -2,7 +2,7 @@
 # Please note that my original experience was playing on Windows and there the
 # message window would show 3-4 messages at a time. But apparantly this feature
 # is not available on Linux, so a lot of this config is designed to reduce msg
-# spam and fatigue from hitting --more-- repeatedly. 
+# spam and fatigue from hitting --more-- repeatedly.
 
 # Inspiration taken from:
 # https://alt.org/nethack/userdata/s/scorchgeek/scorchgeek.nh343rc
@@ -54,7 +54,7 @@ OPTIONS=autoquiver
 # OPTIONS=checkpoint 			# Save game after level change; N/A 3.6.0
 OPTIONS=prayconfirm
 # OPTIONS=paranoid_remove  		# 3.6 N/A
-# OPTIONS=paranoid_hit			# 3.6 N/A	
+# OPTIONS=paranoid_hit			# 3.6 N/A
 OPTIONS=showexp
 OPTIONS=time
 OPTIONS=silent
@@ -94,7 +94,7 @@ OPTIONS=scores:10 top/3 around/own
 OPTIONS=noextmenu
 # standout: Uses standout mode (reverse video) for displaying "--More--".
 # Boolean option, defaults to FALSE. Can be set in-game. Persistent.
-OPTIONS=nostandout 
+OPTIONS=nostandout
 OPTIONS=nouse_darkgray
 
 ################################################
@@ -126,10 +126,10 @@ OPTIONS=bones
 # OPTIONS=hilite_status:"hunger/3/green/red"  # Weak
 # OPTIONS=hilite_status:"hunger/4/green/red"  # Fainting
 
-OPTIONS=statushilites 
-OPTION=hilite_status: hitpoints/30%/red/normal 
+OPTIONS=statushilites
+OPTION=hilite_status: hitpoints/30%/red/normal
 OPTION=hilite_status: hunger/updown/yellow/green
-#OPTION=hilite_status:hunger/150/orange/normal 
+#OPTION=hilite_status:hunger/150/orange/normal
 
 ################################################
 # -------- GRAPHICS OPTIONS
@@ -159,7 +159,7 @@ OPTIONS=windowcolors:status white/#000001 message white/#000001 menu white/#0000
 
 ## Change default glyphs
 OPTIONS=boulder:0
-#SYMBOLS=S_boulder:0
+
 SYMBOLS=S_ghost:X
 SYMBOLS=S_golem:8
 #SYMBOLS=S_lava:~
@@ -169,20 +169,24 @@ SYMBOLS=S_golem:8
 
 ################################################
 # -------- MENUCOLORS
+# red, blue, cyan, green, yellow, magenta, orange, white, black, gray
+# lightgreen, lightblue, lightmagenta, lightcyan
+# none, bold, dim underline, inverse, blink
 ################################################
+
 OPTIONS=menucolors
 #MENUCOLOR="^[a-zA-Z$] - "=white #may want to enable this if regularly playing priest.. (priests don't see the 'uncursed')
-MENUCOLOR=" !C"=white
-MENUCOLOR=" !B"=white
-MENUCOLOR=" !UC"=white
+
 MENUCOLOR=" uncursed| UC?($| )"=white
 MENUCOLOR=" \([-0-9]+:[-0-9]+\)"=white #nethack doesn't display "uncursed" if charges are known
 MENUCOLOR=" [+-][0-9]"=white
 MENUCOLOR=" blessed| B($| )"=cyan
 
-MENUCOLOR="loadstone\|wand \(of\|called\) cancellation"=underline
-MENUCOLOR="Amulet of Yendor named"=magenta                           # color only the real Amulet
-
+# -------------------------
+# Show cursed stuff after all other colors, should have highest priority
+MENUCOLOR=" cursed| C($| )"=red
+MENUCOLOR=" unholy| C($| )"=red
+MENUCOLOR="loadstone\|wand \(of\|called\) cancellation"=red&underline
 
 ## WaT3r SpoRtz D:)
 MENUCOLOR=" holy water"=cyan&bold
@@ -196,19 +200,13 @@ MENUCOLOR=" cursed clear potion"=orange
 MENUCOLOR=" cursed potions? called water"=orange
 MENUCOLOR=" potions? called water named (unholy|cursed|C)($| )"=orange
 
-#| Fully enchanted items (or possibly at max) |
-MENUCOLOR="\+4"=yellow
-MENUCOLOR="\+5"=yellow
-MENUCOLOR="\+6"=yellow
-MENUCOLOR="\+7"=yellow
-
 # vegan
 MENUCOLOR="(food |cram |K-|C-)ration|gunyoki"=green&bold
 MENUCOLOR="lembas wafer|melon|carrot|tin .* spinach"=green&bold
 MENUCOLOR=" oranges?( named.*)?$"=green&bold # avoid coloring orange DSM
 MENUCOLOR=" pears?( named.*)?$"=green&bold # avoid coloring pearl rings
 MENUCOLOR=" apple|banana|kelp|eucalyptus|garlic|wolfsbane"=green&bold
-MENUCOLOR=" slime mold| brain"=green&bold  ## YOUR FRUIT HERE
+MENUCOLOR=" muffin| brain"=green&bold  ## YOUR FRUIT HERE
 MENUCOLOR="(tin of )?(gelatinous cube|acid blob|quivering blob)( corpse)?"=green&bold
 MENUCOLOR="(tin of )?(blue|spotted|ochre) jelly( corpse)?"=green&bold
 MENUCOLOR="(tin of )?lichen|shrieker|violet fungus|(brown|yellow|green|red) mold( corpse)?"=green&bold
@@ -218,117 +216,85 @@ MENUCOLOR="egg|pancake|fortune cookie|candy bar|royal jelly|cream pie|candle"=gr
 MENUCOLOR="(tin of )?brown pudding|gray ooze( corpse)?"=green
 
 ###########
-# GOODIES #
+# Ascension Kit #
 ###########
-MENUCOLOR="wand .* wish(ing)?($| )"=magenta
-MENUCOLOR="magic marker"=magenta
-MENUCOLOR="wand .* tele(port(ation)?)?($| )"=magenta
-MENUCOLOR="wand .* polymorph"=magenta
-MENUCOLOR="wand .* death"=magenta 
-MENUCOLOR="ring .* conf(lict)?"=magenta
-MENUCOLOR="c(o|hi)ckatrice (corpse|egg)"=magenta
-MENUCOLOR="egg .* cockatrice"=magenta
-# Bugfix: 'scroll.*', not 'scroll .*': Otherwise the coloring disappears on stacks.
-#MENUCOLOR="scroll.* genocide($| )"=magenta                                     
-#MENUCOLOR="scroll.* charging($| )"=magenta                                     
-#MENUCOLOR="scroll.* identify($| )"=magenta
-
-# Ascension kit/armor
-MENUCOLOR=" dragon scale mail "=yellow
-MENUCOLOR=" cloak of magic resistance "=yellow
-MENUCOLOR=" MR "=yellow
-MENUCOLOR=" reflection "=yellow
-MENUCOLOR=" #asc"=yellow
-
-# unidentified magic armor
-#MENUCOLOR="piece of cloth|opera cloak|ornamental cope|tattered cape"=magenta
-#MENUCOLOR="plumed helmet|etched helmet|crested helmet|visored helmet"=magenta
-#MENUCOLOR="(old|padded|riding|fencing) gloves"=magenta 
-#MENUCOLOR="(mud|buckled|riding|snow|hiking|combat|jungle) boots"=magenta 
-
-
-######################
-# Royally Awesome
-######################
-MENUCOLOR=" stethoscope"=purple&bold
-MENUCOLOR=" bag .* holding"=purple&bold
-# MENUCOLOR=" luck(stone)?($| )"=purple&bold
+MENUCOLOR=" bag .* holding"=magenta&bold
 MENUCOLOR=" luck(stone)?"=purple&bold
-MENUCOLOR=" gain level"=purple&bold
-MENUCOLOR=" tinning kit"=purple&bold
 MENUCOLOR=" ring .* (FA|free action)($| )"=purple&bold
 MENUCOLOR=" ring .* (TC|teleport control)($| )"=purple&bold
 MENUCOLOR=" ring .* lev(itation)?($| )"=purple&bold
-# MENUCOLOR=" unicorn horn[^[]*$"=purple&bold
-MENUCOLOR="a +.? unicorn horn"=lightblue&bold
-MENUCOLOR="a unicorn horn"=lightblue&bold
 
+MENUCOLOR=" dragon scale mail "=magenta
+MENUCOLOR=" cloak of magic resistance "=magenta
+MENUCOLOR=" MR "=magenta
+MENUCOLOR=" reflection "=magenta
+
+MENUCOLOR=" Amulet of Yendor named"=blink&orange
+
+######################
+# Escape Items
+######################
+MENUCOLOR=" amulet .* (life ?saving|LS)($| )"=yellow&bold
+
+MENUCOLOR="magic marker"=yellow
+MENUCOLOR="tooled horn"=yellow
+MENUCOLOR="leather drum"=yellow
+MENUCOLOR="expensive camera"=yellow
+
+MENUCOLOR="wand .* tele(port(ation)?)?($| )"=yellow
+MENUCOLOR="wand .* death"=yellow
+MENUCOLOR="wand .* wish(ing)?($| )"=yellow&bold&underline
+MENUCOLOR="wand .* polymorph"=magenta
+
+MENUCOLOR="c(o|hi)ckatrice (corpse|egg)"=yellow
+MENUCOLOR="egg .* cockatrice"=yellow
+MENUCOLOR="ring .* conf(lict)?"=magenta
+MENUCOLOR="cursed potion.* of gain level"=yellow
+
+# Bugfix: 'scroll.*', not 'scroll .*': Otherwise the coloring disappears on stacks.
+MENUCOLOR="scroll.* genocide($| )"=yellow
+MENUCOLOR="scroll.* teleport($| )"=yellow
+MENUCOLOR="scroll.* earth($| )"=yellow
+
+MENUCOLOR="wand.* teleport($| )"=yellow
+MENUCOLOR="wand.* fire($| )"=yellow
+MENUCOLOR="wand.* lightning($| )"=yellow
+MENUCOLOR="wand.* death($| )"=yellow
+
+
+Cursed potion of gain level
 
 ######################
 # HEALING & DEFENSE
 ######################
-# MENUCOLOR=" healing"=lightblue
-# MENUCOLOR=" extra healing"=lightblue
-# MENUCOLOR=" full healing"=lightblue&bold
-# MENUCOLOR=" amulet .* (life ?saving|LS)($| )"=lightblue&bold
-# MENUCOLOR=" ring .* reg(eneration)?($| )"=lightblue
+MENUCOLOR=" healing"=lightblue
+MENUCOLOR=" extra healing"=lightblue
+MENUCOLOR=" full healing"=lightblue&bold
+MENUCOLOR=" ring .* reg(eneration)?($| )"=blue
+
+# MENUCOLOR=" unicorn horn[^[]*$"=blue&bold
+MENUCOLOR="a +.? unicorn horn"=blue&bold
+MENUCOLOR="a unicorn horn"=blue&bold
 
 
-#############
-# ARTIFACTS #
-#############
-#unaligned
-MENUCOLOR=" (Dragonbane|Fire Brand|Frost Brand|Ogresmasher|Trollsbane|Werebane)"=lightgreen
-
-#lawful normal, quest
-MENUCOLOR=" (Demonbane|Excalibur|Grayswandir|Snickersnee|Sunsword)"=lightgreen
-MENUCOLOR=" (Orb of Detection|Sceptre of Might|Magic Mirror of Merlin|Mitre of Holiness|Tsurugi of Muramasa)"=lightgreen
-
-#neutral normal, quest
-MENUCOLOR=" (Cleaver|Giantslayer|Magicbane|Mjollnir|Vorpal Blade)"=lightgreen
-MENUCOLOR=" (Heart of Ahriman|Staff of Aesculapius|Eyes of the Overworld|Platinum Yendorian Express Card|Orb of Fate|Eye of the Aethiopica)"=lightgreen
-
-#chaotic normal, quest
-MENUCOLOR=" (Grimtooth|Orcrist|Sting|Stormbringer)"=lightgreen
-MENUCOLOR=" (Longbow of Diana|Master Key of Thievery)"=lightgreen
-
-#invocation items
-MENUCOLOR=" (Bell of Opening|silver bell|Candelabrum of Invocation|candelabrum|Book of the Dead|papyrus spellbook)"=magenta&bold
-# MENUCOLOR=" (Bell of Opening|silver bell|Candelabrum of Invocation|candelabrum|Book of the Dead|papyrus spellbook)"=orange
-
-#raison d'etre
-#the whole reason you're playing this stupid game
-# MENUCOLOR=" Amulet of Yendor named"=green&bold&underline
-MENUCOLOR=" Amulet of Yendor named"=blink&orange
-
-##################
-# CURSED GOODIES #
-##################
+########################
+# Danger Will Robinson #
+########################
 #MENUCOLOR=" cursed.* bag .* holding"=red&bold
 MENUCOLOR=" cursed.* luck(stone)?($| )"=red&bold
+MENUCOLOR=" load(stone)?($| )"=red&underline
 MENUCOLOR=" cursed.* unicorn horn"=red&bold
 MENUCOLOR=" cursed.* (Bell of Opening|silver bell|Candelabrum of Invocation|candelabrum|Book of the Dead|papyrus spellbook)"=red&bold
 
-#############
-# BAD STUFF #
-#############
-MENUCOLOR=" load(stone)?($| )"=blue&underline
-
-
-##############################
-# WATCH OUT, BAG OF HOLDING! #
-##############################
-# even if unidentified:
 MENUCOLOR="bag($| named)"=red&underline
-MENUCOLOR=" bag .* holding"=red&underline
 MENUCOLOR=" bag .* tricks"=red&underline
-MENUCOLOR=" bag .* holding named MI.*"=magenta
 MENUCOLOR="cursed.* bag .* holding"=red&underline
-MENUCOLOR="bag .* holding named.* C($| )"=red&underline
+
 MENUCOLOR=" wand .*[^!]canc"=red&underline
-MENUCOLOR=" wand .* msg_van"=red&underline
+MENUCOLOR=" wand .* van"=red&underline
 MENUCOLOR=" wand called .* vanish( .*)?$"=red&underline
-MENUCOLOR="(^|aluminum |balsa |brass |copper |crystal |curved |ebony | forked |glass |hexagonal |iridium |iron |jeweled |long |maple |marble |oak |pine |platinum |runed |short |silver |spiked |steel |tin |uranium |zinc )wand($| named)"=red&underline 
+
+MENUCOLOR="(^|aluminum |balsa |brass |copper |crystal |curved |ebony | forked |glass |hexagonal |iridium |iron |jeweled |long |maple |marble |oak |pine |platinum |runed |short |silver |spiked |steel |tin |uranium |zinc )wand($| named)"=red&underline
 
 
 ################
@@ -336,10 +302,16 @@ MENUCOLOR="(^|aluminum |balsa |brass |copper |crystal |curved |ebony | forked |g
 ################
 MENUCOLOR=" lamp"=yellow
 MENUCOLOR=" candle"=yellow
-MENUCOLOR=" magic lamp|lamp .* magic"=magenta
+MENUCOLOR=" magic lamp|lamp .* magic"=yellow&bold&underline
 MENUCOLOR=" gold piece"=yellow
 MENUCOLOR=" valuable"=brown
 MENUCOLOR=" gems? .* hard"=yellow
+
+# unidentified magic armor
+#MENUCOLOR="piece of cloth|opera cloak|ornamental cope|tattered cape"=brown
+#MENUCOLOR="plumed helmet|etched helmet|crested helmet|visored helmet"=brown
+#MENUCOLOR="(old|padded|riding|fencing) gloves"=brown
+#MENUCOLOR="(mud|buckled|riding|snow|hiking|combat|jungle) boots"=brown
 
 #soft gems
 MENUCOLOR=" ([0-9]+|an?|gems? .*) (uncursed |cursed |blessed )?(dilithium|opal|garnet|jasper|agate|jet|obsidian|jade|citrine|chrysoberyl|amber|amethyst|fluorite|turquoise)(e?s)?( stones?| gems?| crystals?)?( named .*)?$"=brown
@@ -375,40 +347,7 @@ MENUCOLOR="^ *[a-z] - +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand 
 MENUCOLOR="^ +\* +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\]$"=white      # enhanceable if more skill slots
 MENUCOLOR="^ +# +[a-z -]+ +\[(Unskilled|Basic|Skilled|Expert|Master|Grand Master)\]$"=none        # enhanceable if more potential
 
-################
-# FORCE COLORS #
-################
-# Some of these are subject to change !
 
-MENUCOLOR="\{R\}"=red
-MENUCOLOR="\{B\}"=blue
-MENUCOLOR="\{C\}"=cyan
-MENUCOLOR="\{G\}"=green
-MENUCOLOR="\{Y\}"=yellow
-MENUCOLOR="\{[MP]\}"=magenta
-MENUCOLOR="\{O\}"=orange
-MENUCOLOR="\{W\}"=white
-MENUCOLOR="\{L\}"=black
-MENUCOLOR="\{y\}"=gray
-MENUCOLOR="\{g\}"=lightgreen
-MENUCOLOR="\{b\}"=lightblue
-MENUCOLOR="\{[mp]\}"=lightmagenta
-MENUCOLOR="\{c\}"=lightcyan
-MENUCOLOR="\{N\}"=none
-MENUCOLOR="\{X\}"=bold
-MENUCOLOR="\{x\}"=dim
-MENUCOLOR="\{U\}"=underline
-MENUCOLOR="\{I\}"=inverse
-MENUCOLOR="\{K\}"=blink
-MENUCOLOR="\{R\}\{U\}"=red&underline
-MENUCOLOR="\{RU\}"=red&underline
-
-########################
-# LOOT/APPLY CONTAINER #
-########################
-MENUCOLOR=" is empty. Do what?"=none
-MENUCOLOR="Put something into .*"=none
-MENUCOLOR="Take something out of .*"=none
 
 
 ################################################
@@ -500,7 +439,6 @@ MSGTYPE=hide "You hit the rock with all your might."
 MSGTYPE=hide "You succeed in cutting away some rock."
 
 
-#
 # MSGTYPE=norep "Unavailable command '.*'."
 
 
@@ -591,10 +529,10 @@ MSGTYPE=hide "The .* potion turns *."
 MSGTYPE=hide "You put .* into the .* named .*"
 MSGTYPE=hide "You put .* into the .*"
 MSGTYPE=hide "You cannot stash something you are wearing."
-MSGTYPE=hide "You carefully open the .*" 
+MSGTYPE=hide "You carefully open the .*"
 MSGTYPE=hide "You carefully open the .* named .*"
 
-MSGTYPE=hide "You open the .*" 
+MSGTYPE=hide "You open the .*"
 MSGTYPE=hide "You open the .* named .*"
 
 # Adapted from https://alt.org/nethack/userdata/t/tjr4/tjr4.nh343rc
@@ -605,7 +543,7 @@ MSGTYPE=hide "You drop .*"
 MSGTYPE=hide ".?For you, good .*; only .* for this .*"
 MSGTYPE=hide "Fine goods for sale:"
 MSGTYPE=hide ".?Thank you for shopping in .*"
-MSGTYPE=norep "You have a little trouble lifting .*" 
+MSGTYPE=norep "You have a little trouble lifting .*"
 MSGTYPE=hide "Your credit is reduced by .* zorkmid*."
 MSGTYPE=hide "The .* will cost you * zorkmids."
 MSGTYPE=hide ".?For you, .*; only .*"
@@ -613,7 +551,7 @@ MSGTYPE=norep "The .* named .* will cost you .* zorkmids."
 MSGTYPE=hide "You bought .*"
 MSGTYPE=hide "You sold .*"
 
-# Hide msgs for any +X 
+# Hide msgs for any +X
 # MSGTYPE=hide "You put a +0 .* into the bag .* holding named .*"
 MSGTYPE=hide "You put a +.? .* into the bag .* holding named .*"
 # MSGTYPE=hide "You put an +0 * into the bag .* holding named .*"
@@ -675,6 +613,9 @@ MSGTYPE=show "It locks on to your *telepathy!" # hostile
 # MSGTYPE=hide "The .* gets zapped!"
 MSGTYPE=hide ".* is mildly warmed?"
 
+MSGTYPE=hide "The soldier thrusts her|his.* short sword."
+
+
 # Show my pets
 # MSGTYPE=show ".* hits you"
 
@@ -685,9 +626,3 @@ MSGTYPE=hide "The .* doesn't notice."
 MSGTYPE=hide ".* doesn't seem harmed."
 MSGTYPE=hide "The .*'s helmet blocks .*'s attack to his head."
 MSGTYPE=hide "The .*'s helmet blocks .*'s attack to her head."
-
-
-# -------------------------
-# Show cursed stuff after all other colors, should have highest priority
-MENUCOLOR=" cursed| C($| )"=red
-MENUCOLOR=" unholy| C($| )"=red

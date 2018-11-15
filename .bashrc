@@ -161,3 +161,6 @@ export PATH="$HOME/.cabal/bin:$PATH"
 # This makes autoenv work
 source `which activate.sh`
 
+
+# Export slashem options
+export SLASHEMOPTIONS=~/.slashemrc-gtk

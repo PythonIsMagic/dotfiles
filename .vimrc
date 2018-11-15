@@ -249,5 +249,9 @@ iabbrev {{ {{ }}<Left><Left><Left>
 
 nnoremap <Leader><Leader>d :.s/todo/ done/<CR> 0"=strftime("%m-%d-%y")<CR>P0vg_x:redir >> ~/Documents/dotfiles/todo/completed.txt<CR>:echon @"<CR>:redir END<CR>dd:nohl<CR>
 
+" Toggle Syntastic checking
+nnoremap <LocalLeader>s :SyntasticToggleMode<CR>
+onoremap <LocalLeader>s :SyntasticToggleMode<CR>
+
 " Source the plugins
 source $HOME/Documents/dotfiles/plugins.vim
