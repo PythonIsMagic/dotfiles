@@ -236,7 +236,7 @@ augroup END
 " ###################################
 " Python Specific 
 " ###################################
-
+"
 " Easy django/python syntax 
 nnoremap <Leader>5 i{%  %}<Left><Left><Left>
 inoremap <Leader>5 {%  %}<Left><Left><Left>
